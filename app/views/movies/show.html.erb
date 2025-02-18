@@ -1,0 +1,6 @@
+<h2><%= @movie.title %></h2>
+<p><%= @movie.overview %></p>
+<img alt="Poster" width="200" src="<%= @movie.poster_url %>">
+<p><%= @movie.rating %></p>
+
+<%= link_to "Back to all movies", movies_path %>

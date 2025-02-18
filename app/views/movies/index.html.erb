@@ -3,8 +3,11 @@
 <ul>
   <% @movies.each do |movie|%>
     <li><%= movie.title %></li>
-    <li><%= movie.overview %></li>
-    <li><%= movie.poster_url %></li>
     <li><%= movie.rating %></li>
+    <p>
+      <%= link_to "Show movie details", movie %>
+    </p>
   <% end %>
 </ul>
+
+<%= link_to "add new movie", new_movie_path(@movie)%>

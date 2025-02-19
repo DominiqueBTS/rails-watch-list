@@ -3,4 +3,13 @@
 <img alt="Poster" width="200" src="<%= @movie.poster_url %>">
 <p><%= @movie.rating %></p>
 
+<h1>New Bookmark for <%= @movie.title %></h1>
+<%= simple_form_for([@movie, @bookmark]) do |f| %>
+  <%= f.input :list_id, collection: List.all.map { |list| [list.name, list.id] }, include_blank: true %>
+  <%= f.input :comment %>
+  <%= f.submit "Submit Bookmark", class: "btn btn-primary" %>
+<% end %>
+
 <%= link_to "Back to all movies", movies_path %>
+
+<%= link_to "show my lists", lists_path %>

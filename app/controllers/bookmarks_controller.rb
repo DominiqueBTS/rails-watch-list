@@ -17,6 +17,17 @@ class BookmarksController < ApplicationController
     end
   end
 
+  def delete
+    @movie = Movie.find(params[:movie_id])  # Find the associated movie
+    @bookmark = Bookmark.find(params[:id])   # Find the existing bookmark
+
+    if @bookmark.destroy
+      redirect_to movies_path  # Redirect on successful deletion
+    else
+      redirect_to movie_path(@movie)  # Redirect back on failure
+    end
+  end
+
   private
 
   def bookmark_params

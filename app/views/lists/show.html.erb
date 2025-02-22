@@ -7,4 +7,14 @@
   <%= movie.rating %>
 <% end %>
 
+
+<h1>New Bookmark for <%= @list.name %></h1>
+<%= simple_form_for([@list, @bookmark]) do |f| %>
+  <%= f.input :movie_id, collection: Movie.all.map { |movie| [movie.title, movie.id] }, include_blank: true %>
+  <%= f.input :comment %>
+  <%= f.submit "Submit Bookmark", class: "btn btn-primary" %>
+<% end %>
+
+<%= link_to "delete movie from list", list_path(@list)%>
+
 <%= link_to "Back to all lists", lists_path %>

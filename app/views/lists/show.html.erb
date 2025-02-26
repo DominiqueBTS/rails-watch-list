@@ -1,20 +1,29 @@
-<h2><%= @list.name %></h2>
+<h1><%= @list.name %></h1>
 
+<div class="movie-container">
+  <% @list.bookmarks.each do |bookmark| %>
+    <div class="card-body">
+      <img class="card-body" alt="Poster" src="<%= bookmark.movie.poster_url %>">
+      <div class="card-body">
+        <h5 class="card-title"><%= bookmark.movie.title %></h5>
+        <p class="card-text"><%= bookmark.movie.overview %></p>
+        <p class="card-text"><small class="text-muted"><%= bookmark.movie.rating %></small></p>
+        <p><%= link_to "Delete movie from list", bookmark_path(bookmark), method: :delete, data: { confirm: "Are you sure you want to delete this bookmark?" } %></p>
+      </div>
+    </div>
+  <% end %>
+</div>
 
-<% @list.movies.each do |movie|  %>
-  <%= movie.title %>
-  <img alt="Poster" width="200" src="<%= movie.poster_url %>">
-  <%= movie.rating %>
-<% end %>
-
-
-<h1>New Bookmark for <%= @list.name %></h1>
-<%= simple_form_for([@list, @bookmark]) do |f| %>
-  <%= f.input :movie_id, collection: Movie.all.map { |movie| [movie.title, movie.id] }, include_blank: true %>
-  <%= f.input :comment %>
-  <%= f.submit "Submit Bookmark", class: "btn btn-primary" %>
-<% end %>
-
-<%= link_to "delete movie from list", list_path(@list)%>
-
+<div class="movie-container">
+  <div class="card">
+    <h2>New Bookmark for <%= @list.name %></h2>
+    <div class="card-body">
+      <%= simple_form_for([@list, @bookmark]) do |f| %>
+      <%= f.input :movie_id, collection: Movie.all.map { |movie| [movie.title, movie.id] }, include_blank: true %>
+      <%= f.input :comment %>
+      <%= f.submit "Submit Bookmark", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
 <%= link_to "Back to all lists", lists_path %>
+</div>

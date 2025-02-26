@@ -8,5 +8,12 @@
 @import "font-awesome";
 
 // Your CSS partials
-@import "components/index";
-@import "pages/index";
+@import "pages/index"; // Ensure this file exists and correctly imports individual component styles
+@import "components/navbar"; // Adjust this if you have multiple components to include
+@import "pages/home";
+@import "components/alert";
+@import "../stylesheets/components/movie_card";
+
+h1 {
+  color: rgb(12, 2, 29);
+}

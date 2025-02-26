@@ -22,6 +22,20 @@ class ListsController < ApplicationController
     end
   end
 
+  def create_bookmark
+    @list = List.find(params[:list_id])
+    @bookmark = Bookmark.new(bookmark_params)
+    @bookmark.movie = Movie.find(bookmark_params[:movie_id])
+    @bookmark.list = @list
+
+    if @bookmark.save
+      redirect_to list_path(@list)
+    else
+      redirect_to llist_path(@list), alert: 'Failed to save bookmark.'
+      render :new
+    end
+  end
+
   private
 
   def list_params

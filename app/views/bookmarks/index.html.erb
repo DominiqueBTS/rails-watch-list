@@ -1,1 +1,14 @@
 <h1>all bookmarks</h1>
+
+<div class="movie-container">
+  <% @movies.bookmarks.each do |bookmark| %>
+      <div class="card-body">
+        <h5 class="card-title"><%= bookmark.movie.title %></h5>
+        <p class="card-text"><%= bookmark.list.name %></p>
+        <p class="card-text"><%= bookmark.comment %></p>
+        <p class="card-text"><small class="text-muted"><%= bookmark.movie.rating %></small></p>
+        <p><%= link_to "Delete movie from list", bookmark_path(bookmark), method: :delete, data: { confirm: "Are you sure you want to delete this bookmark?" } %></p>
+      </div>
+    </div>
+  <% end %>
+</div>

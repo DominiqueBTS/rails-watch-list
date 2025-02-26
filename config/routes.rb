@@ -3,10 +3,9 @@ Rails.application.routes.draw do
     resources :bookmarks, only: [:new, :create]  # Nested to handle bookmarks for movies
   end
   resources :lists do
-    resources :bookmarks, only: [:index, :create]
+    resources :bookmarks, only: [:new, :create]
   end
-
-  resources :bookmarks, only: [:index, :create, :destroy]
+  resources :bookmarks, only: [:destroy]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

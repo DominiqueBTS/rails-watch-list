@@ -18,12 +18,11 @@ class BookmarksController < ApplicationController
   end
 
   def destroy
-    @bookmark = Bookmark.find(params[:id])  # Find the bookmark by its ID
-    if @bookmark.destroy
-      redirect_to list_path(@bookmark.list)  # Redirect back to the associated list
-    else
-      redirect_to list_path(@bookmark.list), alert: 'Failed to delete bookmark.'
-    end
+    @bookmark = Bookmark.find(params[:id])
+    @list = @bookmark.list #get the list before deleting the bookmark.
+    @bookmark.destroy
+
+    redirect_to list_path(@list), notice: 'Bookmark was successfully deleted.'
   end
 
   private
